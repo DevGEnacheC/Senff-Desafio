@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: aluguel_carros_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: AluguelCarrosDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - aluguel_carros_data:/var/lib/postgresql/data
+    networks:
+      - aluguel_carros_network
+
+volumes:
+  aluguel_carros_data:
+
+networks:
+  aluguel_carros_network:
+    driver: bridge

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Domain", "Alu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Infrastructure", "AluguelCarros.Infrastructure\AluguelCarros.Infrastructure.csproj", "{37EFDBE0-42F8-49F2-B17B-EC248010056B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AluguelCarros.Application", "AluguelCarros.Application\AluguelCarros.Application.csproj", "{88AA1661-BE66-A8AD-9FAB-7E3B3CBF4CD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{37EFDBE0-42F8-49F2-B17B-EC248010056B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37EFDBE0-42F8-49F2-B17B-EC248010056B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37EFDBE0-42F8-49F2-B17B-EC248010056B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88AA1661-BE66-A8AD-9FAB-7E3B3CBF4CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88AA1661-BE66-A8AD-9FAB-7E3B3CBF4CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88AA1661-BE66-A8AD-9FAB-7E3B3CBF4CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88AA1661-BE66-A8AD-9FAB-7E3B3CBF4CD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
