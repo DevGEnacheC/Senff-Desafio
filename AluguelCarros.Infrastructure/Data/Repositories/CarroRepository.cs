@@ -13,7 +13,7 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<Carro> GetByIdAsync(Guid id)
+        public async Task<Carro?> GetByIdAsync(Guid id)
         {
             return await _context.Carros.FindAsync(id);
         }
