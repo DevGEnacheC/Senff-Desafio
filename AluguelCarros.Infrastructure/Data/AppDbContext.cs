@@ -1,0 +1,33 @@
+﻿using AluguelCarros.Infrastructure.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace AluguelCarros.Infrastructure.Data
+{
+    public class AppDbContext : DbContext
+    {
+        public DbSet<Carro> Carros { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Aluguel> Alugueis { get; set; }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Carro>().HasKey(c => c.Id);
+            modelBuilder.Entity<Cliente>().HasKey(c => c.Id);
+            modelBuilder.Entity<Aluguel>().HasKey(a => a.Id);
+
+            modelBuilder.Entity<Aluguel>()
+                .HasOne<Carro>()
+                .WithMany()
+                .HasForeignKey(a => a.CarroId);
+
+            modelBuilder.Entity<Aluguel>()
+                .HasOne<Cliente>()
+                .WithMany()
+                .HasForeignKey(a => a.ClienteId);
+        }
+    }
+}

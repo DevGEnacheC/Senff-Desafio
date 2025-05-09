@@ -1,8 +1,13 @@
+using AluguelCarros.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddMediatR(typeof(Program).Assembly);
 

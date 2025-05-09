@@ -11,17 +11,11 @@
   	<Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-  <ItemGroup>
   	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
   	<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
   	<PackageReference Include="IdentityServer4" Version="4.1.2" />
   </ItemGroup>
   <ItemGroup>
   	<ProjectReference Include="..\AluguelCarros.Domain\AluguelCarros.Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 </Project>
