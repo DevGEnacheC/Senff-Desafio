@@ -8,5 +8,7 @@ namespace AluguelCarros.Infrastructure.Repositories
         Task<IEnumerable<Carro>> GetDisponiveisAsync();
         Task AddAsync(Carro carro);
         Task UpdateAsync(Carro carro);
+        Task<List<Carro>> GetAllAsync(CancellationToken cancellationToken);
+        Task<bool> ExistsByPlacaAsync(string placa, CancellationToken cancellationToken);
     }
 }

@@ -14,11 +14,19 @@ namespace AluguelCarros.Infrastructure.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {   
+
+            // Carro
             modelBuilder.Entity<Carro>().HasKey(c => c.Id);
+            modelBuilder.Entity<Carro>()
+                .HasIndex(c => c.Placa)
+                .IsUnique();
+            
+            // Cliente
             modelBuilder.Entity<Cliente>().HasKey(c => c.Id);
             modelBuilder.Entity<Aluguel>().HasKey(a => a.Id);
 
+            // Aluguel
             modelBuilder.Entity<Aluguel>()
                 .HasOne<Carro>()
                 .WithMany()

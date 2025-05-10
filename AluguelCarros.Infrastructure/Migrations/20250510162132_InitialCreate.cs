@@ -19,6 +19,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     Marca = table.Column<string>(type: "text", nullable: false),
                     Modelo = table.Column<string>(type: "text", nullable: false),
                     Ano = table.Column<int>(type: "integer", nullable: false),
+                    Placa = table.Column<string>(type: "text", nullable: false),
                     Disponivel = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -77,6 +78,12 @@ namespace AluguelCarros.Infrastructure.Migrations
                 name: "IX_Alugueis_ClienteId",
                 table: "Alugueis",
                 column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carros_Placa",
+                table: "Carros",
+                column: "Placa",
+                unique: true);
         }
 
         /// <inheritdoc />

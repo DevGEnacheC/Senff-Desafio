@@ -34,5 +34,15 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             _context.Carros.Update(carro);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Carro>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Carros.ToListAsync(cancellationToken);
+        }
+
+        public async Task<bool> ExistsByPlacaAsync(string placa, CancellationToken cancellationToken)
+        {
+            return await _context.Carros.AnyAsync(c => c.Placa == placa, cancellationToken);
+        }
     }
 }

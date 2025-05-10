@@ -5,16 +5,15 @@
   	<ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-  	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
-  		<PrivateAssets>all</PrivateAssets>
-  		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-  	</PackageReference>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
 	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
   	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
   <ItemGroup>
   	<ProjectReference Include="..\AluguelCarros.Application\AluguelCarros.Application.csproj" />
-  	<ProjectReference Include="..\AluguelCarros.Infrastructure\AluguelCarros.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
   	<None Update="appsettings.json">

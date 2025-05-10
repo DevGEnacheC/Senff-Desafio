@@ -75,7 +75,14 @@ namespace AluguelCarros.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Placa")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Placa")
+                        .IsUnique();
 
                     b.ToTable("Carros");
                 });

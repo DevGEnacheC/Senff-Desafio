@@ -9,12 +9,15 @@ namespace AluguelCarros.Application.Events
         public string Modelo { get; }
         public int Ano { get; }
 
-        public CarroCriadoEvent(Guid id, string marca, string modelo, int ano)
+        public string Placa { get; }
+
+        public CarroCriadoEvent(Guid id, string marca, string modelo, int ano, string placa)
         {
             Id = id;
             Marca = marca;
             Modelo = modelo;
             Ano = ano;
+            Placa = placa;
         }
     }
 }
