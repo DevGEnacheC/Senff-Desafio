@@ -1,6 +1,2 @@
 @AluguelCarros.Api_HostAddress = http://localhost:5086
-
-GET {{AluguelCarros.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
 ###

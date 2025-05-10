@@ -1,0 +1,34 @@
+﻿using AluguelCarros.Application.Commands;
+using AluguelCarros.Application.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AluguelCarros.Api.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ClientesController : ControllerBase
+    {
+        private readonly IMediator _mediator;
+
+        public ClientesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CriarCliente([FromBody] CriarClienteCommand command)
+        {
+            var cliente = await _mediator.Send(command);
+            return Ok(cliente);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListarClientes()
+        {
+            var query = new ListarClientesQuery();
+            var clientes = await _mediator.Send(query);
+            return Ok(clientes);
+        }
+    }
+}

@@ -13,8 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddMediatR(typeof(CriarCarroCommand).Assembly);
+builder.Services.AddMediatR(typeof(CriarClienteCommand).Assembly);
 
 builder.Services.AddValidatorsFromAssembly(typeof(CriarCarroCommand).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(CriarClienteCommand).Assembly);
+
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 
 builder.Services.AddEndpointsApiExplorer();

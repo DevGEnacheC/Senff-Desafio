@@ -19,15 +19,8 @@ namespace AluguelCarros.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CriarCarro([FromBody] CriarCarroCommand command)
         {
-            try
-            {
-                var carroId = await _mediator.Send(command);
-                return Ok(carroId);
-            }
-            catch (FluentValidation.ValidationException ex)
-            {
-                return BadRequest(ex.Errors);
-            }
+            var carroId = await _mediator.Send(command);
+            return Ok(carroId);   
         }
 
         [HttpGet]

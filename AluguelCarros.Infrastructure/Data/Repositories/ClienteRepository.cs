@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AluguelCarros.Infrastructure.Entities;
 using AluguelCarros.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace AluguelCarros.Infrastructure.Data.Repositories
 {
-    internal class ClienteRepository : IClienteRepository
+    public class ClienteRepository : IClienteRepository
     {
         private readonly AppDbContext _context;
 
@@ -26,6 +27,16 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
         public async Task<Cliente?> GetByIdAsync(Guid id)
         {
             return await _context.Clientes.FindAsync(id);
+        }
+
+        public async Task<List<Cliente>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Clientes.ToListAsync(cancellationToken);
+        }
+
+        public async Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken)
+        {
+            return await _context.Clientes.AnyAsync(c => c.CPF == cpf, cancellationToken);
         }
     }
 }
