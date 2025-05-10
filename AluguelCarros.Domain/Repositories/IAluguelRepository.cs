@@ -9,9 +9,9 @@ namespace AluguelCarros.Infrastructure.Repositories
 {
     public interface IAluguelRepository
     {
-        Task<Aluguel> GetByIdAsync(Guid id);
-        Task<IEnumerable<Aluguel>> GetByCarroIdAsync(Guid carroId);
+        Task<Aluguel?> GetByIdAsync(Guid id);
         Task AddAsync(Aluguel aluguel);
         Task UpdateAsync(Aluguel aluguel);
+        Task<List<Aluguel>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

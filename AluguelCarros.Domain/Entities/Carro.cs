@@ -26,8 +26,6 @@
 
         public void Reservar()
         {
-            if (!Disponivel)
-                throw new InvalidOperationException("Carro já está reservado.");
             Disponivel = false;
         }
 

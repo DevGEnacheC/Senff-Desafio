@@ -6,7 +6,7 @@ namespace AluguelCarros.Infrastructure.Repositories
     {
         Task<Cliente?> GetByIdAsync(Guid id);
         Task AddAsync(Cliente cliente);
-
         Task<List<Cliente>> GetAllAsync(CancellationToken cancellationToken);
+        Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken);
     }
 }

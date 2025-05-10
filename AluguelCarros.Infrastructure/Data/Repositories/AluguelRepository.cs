@@ -1,0 +1,40 @@
+﻿using AluguelCarros.Infrastructure.Entities;
+using AluguelCarros.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+namespace AluguelCarros.Infrastructure.Data.Repositories
+{
+    public class AluguelRepository : IAluguelRepository
+    {
+        private readonly AppDbContext _context;
+
+        public AluguelRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task AddAsync(Aluguel aluguel)
+        {
+            await _context.Alugueis.AddAsync(aluguel);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Aluguel aluguel)
+        {
+            _context.Alugueis.Update(aluguel);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Aluguel>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Alugueis.ToListAsync(cancellationToken);
+        }
+
+        public async Task<Aluguel?> GetByIdAsync(Guid id)
+        {
+            return await _context.Alugueis.FindAsync(id);
+        }
+
+        
+    }
+}

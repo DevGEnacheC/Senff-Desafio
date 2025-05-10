@@ -26,17 +26,13 @@ namespace AluguelCarros.Application.Validators
                     .WithMessage(string.Format("O nome não pode exceder {0} caracteres.", maxCharNome));
 
             RuleFor(x => x.CPF)
+                .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("O cpf é obrigatório.")
-                .DependentRules(() =>
-                {
-                    RuleFor(x => x.CPF)
-                        .Length(lengthCPF)
-                            .WithMessage(string.Format("O CPF deve conter {0} caracteres."
-                            , lengthCPF));
-                }
-                );
+                .Length(lengthCPF)
+                    .WithMessage(string.Format("O CPF deve conter {0} caracteres."
+                    , lengthCPF));
 
-            
+
         }
     }
 }

@@ -44,5 +44,11 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
         {
             return await _context.Carros.AnyAsync(c => c.Placa == placa, cancellationToken);
         }
+
+        public async Task<bool> GetDisponivel(Guid id, CancellationToken cancellationToken)
+        {
+            return await _context.Carros.AnyAsync(
+                   c => c.Id == id && c.Disponivel, cancellationToken);
+        }
     }
 }

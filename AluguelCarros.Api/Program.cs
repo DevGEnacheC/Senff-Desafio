@@ -14,9 +14,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddMediatR(typeof(CriarCarroCommand).Assembly);
 builder.Services.AddMediatR(typeof(CriarClienteCommand).Assembly);
+builder.Services.AddMediatR(typeof(CriarAluguelCommand).Assembly);
 
 builder.Services.AddValidatorsFromAssembly(typeof(CriarCarroCommand).Assembly);
 builder.Services.AddValidatorsFromAssembly(typeof(CriarClienteCommand).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(CriarAluguelCommand).Assembly);
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 

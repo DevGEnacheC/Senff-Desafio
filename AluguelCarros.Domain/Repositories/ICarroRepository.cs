@@ -10,5 +10,6 @@ namespace AluguelCarros.Infrastructure.Repositories
         Task UpdateAsync(Carro carro);
         Task<List<Carro>> GetAllAsync(CancellationToken cancellationToken);
         Task<bool> ExistsByPlacaAsync(string placa, CancellationToken cancellationToken);
+        Task<bool> GetDisponivel(Guid id, CancellationToken cancellationToken);
     }
 }
