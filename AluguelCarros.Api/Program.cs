@@ -1,5 +1,7 @@
 using AluguelCarros.Api.Middleware;
-using AluguelCarros.Application.Commands;
+using AluguelCarros.Application.Commands.Alugueis.Commands;
+using AluguelCarros.Application.Commands.Carros.Commands;
+using AluguelCarros.Application.Commands.Clientes.Commands;
 using AluguelCarros.Application.Validators.Behaviors;
 using AluguelCarros.Infrastructure.Data;
 using FluentValidation;

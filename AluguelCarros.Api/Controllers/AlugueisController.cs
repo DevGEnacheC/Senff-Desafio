@@ -1,4 +1,4 @@
-﻿using AluguelCarros.Application.Commands;
+﻿using AluguelCarros.Application.Commands.Alugueis.Commands;
 using AluguelCarros.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
