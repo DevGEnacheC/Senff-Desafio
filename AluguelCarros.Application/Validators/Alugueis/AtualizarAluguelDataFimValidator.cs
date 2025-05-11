@@ -5,11 +5,15 @@ namespace AluguelCarros.Application.Validators.Alugueis
 {
     public class AtualizarAluguelDataFimValidator : AbstractValidator<AtualizarAluguelDataFimCommand>
     {
-        /// <summary>
-        /// A validação é feita dentro do command handler por falta de informações
-        /// </summary>
         public AtualizarAluguelDataFimValidator()
         {
+            RuleFor(x => x.Id)
+                .NotEqual(Guid.Empty).WithMessage("O ID do aluguel é obrigatório.");
+
+            RuleFor(x => x.DataFim)
+                .NotEmpty().WithMessage("A data fim é obrigatória.")
+            .GreaterThan(DateTime.Today)
+                    .WithMessage("A data de fim não pode ser anterior a hoje.");
         }
     }
 }

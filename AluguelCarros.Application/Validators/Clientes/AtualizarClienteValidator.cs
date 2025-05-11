@@ -19,6 +19,9 @@ namespace AluguelCarros.Application.Validators.Clientes
         public AtualizarClienteValidator()
         {
 
+            RuleFor(x => x.Id)
+                .NotEqual(Guid.Empty).WithMessage("O ID do cliente é obrigatório.");
+
             RuleFor(x => x.Nome)
                 .NotEmpty().WithMessage("O nome é obrigatório.")
                 .MaximumLength(maxCharNome)

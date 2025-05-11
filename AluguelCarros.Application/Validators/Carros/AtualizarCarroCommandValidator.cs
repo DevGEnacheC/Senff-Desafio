@@ -31,6 +31,9 @@ namespace AluguelCarros.Application.Validators.Carros
         /// </summary>
         public AtualizarCarroCommandValidator()
         {
+            RuleFor(x => x.Id)
+                .NotEqual(Guid.Empty).WithMessage("O ID do carro é obrigatório.");
+
             RuleFor(x => x.Ano)
                 .GreaterThan(minAno).WithMessage(string.Format("O ano deve ser maior que {0}.", minAno))
                 .LessThanOrEqualTo(DateTime.Now.Year + 1)
