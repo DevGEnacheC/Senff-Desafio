@@ -26,6 +26,11 @@
             TaxaAtraso = 0;
         }
 
+        public void UpdateDataFim(DateTime dataFim)
+        {
+            DataFim = dataFim;
+        }
+
         public void Devolver(DateTime dataDevolucao)
         {
             DataDevolucao = dataDevolucao;
@@ -38,13 +43,15 @@
         private decimal CalcularTaxaAtraso(DateTime dataDevolucao)
         {
             var diasAtraso = (dataDevolucao - DataFim).Days;
-            // 50% do aluguel por dia atrasado!
+
+            // 50% a mais do aluguel por dia atrasado!
+            // Ou seja, 2 dias de atraso equivalem ao preço original do aluguel.
             return diasAtraso * 50;
         }
 
         public decimal ValorTotal()
         {   
-            if(TaxaAtraso > 0) return ValorAluguel * (TaxaAtraso / 100);
+            if(TaxaAtraso > 0) return ValorAluguel + (ValorAluguel * (TaxaAtraso / 100));
             return ValorAluguel;
         }
     }

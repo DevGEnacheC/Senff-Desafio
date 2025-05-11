@@ -9,12 +9,12 @@ namespace AluguelCarros.Application.Events.Alugueis.Events
 {
     public class AluguelCriadoEvent : INotification
     {
-        public Guid Id { get; private set; }
-        public Guid CarroId { get; private set; }
-        public Guid ClienteId { get; private set; }
-        public DateTime DataInicio { get; private set; }
-        public DateTime DataFim { get; private set; }
-        public decimal ValorAluguel { get; private set; }
+        public Guid Id { get; }
+        public Guid CarroId { get; }
+        public Guid ClienteId { get; }
+        public DateTime DataInicio { get; }
+        public DateTime DataFim { get; }
+        public decimal ValorAluguel { get; }
 
         public AluguelCriadoEvent(Guid id, 
                                   Guid carroId, Guid clienteId, 

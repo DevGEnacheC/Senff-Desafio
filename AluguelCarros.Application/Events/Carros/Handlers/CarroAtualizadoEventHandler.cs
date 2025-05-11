@@ -4,18 +4,18 @@ using Microsoft.Extensions.Logging;
 
 namespace AluguelCarros.Application.Events.Carros.Handlers
 {
-    public class CarroCriadoEventHandler : INotificationHandler<CarroAtualizadoEvent>
+    public class CarroAtualizadoEventHandler : INotificationHandler<CarroAtualizadoEvent>
     {
-        private readonly ILogger<CarroCriadoEventHandler> _logger;
+        private readonly ILogger<CarroAtualizadoEventHandler> _logger;
 
-        public CarroCriadoEventHandler(ILogger<CarroCriadoEventHandler> logger)
+        public CarroAtualizadoEventHandler(ILogger<CarroAtualizadoEventHandler> logger)
         {
             _logger = logger;
         }
 
         public Task Handle(CarroAtualizadoEvent notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Carro criado: ID={Id}, Marca={Marca}, Modelo={Modelo}, Ano={Ano}, Placa={Placa}",
+            _logger.LogInformation("Carro atualizado: ID={Id}, Marca={Marca}, Modelo={Modelo}, Ano={Ano}, Placa={Placa}",
                 notification.Id, notification.Marca, notification.Modelo, notification.Ano, notification.Placa);
             return Task.CompletedTask;
         }

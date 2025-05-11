@@ -3,7 +3,6 @@ using AluguelCarros.Application.Events.Carros.Events;
 using AluguelCarros.Application.Exceptions;
 using AluguelCarros.Infrastructure.Data.Repositories;
 using AluguelCarros.Infrastructure.Data;
-using AluguelCarros.Infrastructure.Entities;
 using MediatR;
 
 namespace AluguelCarros.Application.Commands.Carros.Handlers
@@ -56,7 +55,7 @@ namespace AluguelCarros.Application.Commands.Carros.Handlers
 
             await _repository.UpdateAsync(carro);
 
-            var evento = new CarroCriadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa);
+            var evento = new CarroAtualizadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa, carro.Disponivel);
             await _mediator.Publish(evento, cancellationToken);
 
             return carro.Id;

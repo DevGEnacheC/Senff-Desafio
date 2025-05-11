@@ -10,23 +10,23 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 {
     public class CriarAluguelCommandHandler : IRequestHandler<CriarAluguelCommand, Guid>
     {
-        private readonly AluguelRepository aluguelRepository;
-        private readonly CarroRepository carroRepository;
-        private readonly ClienteRepository clienteRepository;
+        private readonly AluguelRepository _aluguelRepository;
+        private readonly CarroRepository _carroRepository;
+        private readonly ClienteRepository _clienteRepository;
 
         private readonly IMediator _mediator;
 
         public CriarAluguelCommandHandler(AppDbContext context, IMediator mediator)
         {
-            aluguelRepository = new(context);
-            carroRepository = new(context);
-            clienteRepository = new(context);
+            _aluguelRepository = new(context);
+            _carroRepository = new(context);
+            _clienteRepository = new(context);
             _mediator = mediator;
         }
 
         public async Task<Guid> Handle(CriarAluguelCommand request, CancellationToken cancellationToken)
         {   
-            var carro = await carroRepository.GetByIdAsync(request.CarroId);
+            var carro = await _carroRepository.GetByIdAsync(request.CarroId);
             
             if (carro == null) 
             {
@@ -36,7 +36,7 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
                 ]);
             }
 
-            var cliente = await clienteRepository.GetByIdAsync(request.ClienteId);
+            var cliente = await _clienteRepository.GetByIdAsync(request.ClienteId);
             if (cliente == null)
             {
                throw new FluentValidationException(
@@ -59,11 +59,11 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
                 request.DataInicio, request.DataFim,
                 request.ValorAluguel);
 
-            await aluguelRepository.AddAsync(aluguel);
+            await _aluguelRepository.AddAsync(aluguel);
 
             carro.Reservar();
 
-            await carroRepository.UpdateAsync(carro);
+            await _carroRepository.UpdateAsync(carro);
 
             var evento = new AluguelCriadoEvent(aluguel.Id, 
                                                 aluguel.CarroId, aluguel.ClienteId,
