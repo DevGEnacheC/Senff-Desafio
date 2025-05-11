@@ -24,9 +24,9 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListarCarros()
+        public async Task<IActionResult> ListarCarros([FromQuery] bool? disponivel)
         {
-            var query = new ListarCarrosQuery();
+            var query = new ListarCarrosQuery(disponivel);
             var carros = await _mediator.Send(query);
             return Ok(carros);
         }
@@ -38,6 +38,14 @@ namespace AluguelCarros.Api.Controllers
             if (id != command.Id)
                 return BadRequest("Id da rota e do body não coincidem");
 
+            var carroId = await _mediator.Send(command);
+            return Ok(carroId);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarCarro(Guid id)
+        {
+            var command = new DeletarCarroCommand(id);
             var carroId = await _mediator.Send(command);
             return Ok(carroId);
         }

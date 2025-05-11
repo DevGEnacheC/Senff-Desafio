@@ -8,6 +8,7 @@ namespace AluguelCarros.Infrastructure.Repositories
         Task<List<Cliente>> GetAllAsync(CancellationToken cancellationToken);
         Task AddAsync(Cliente cliente);
         Task UpdateAsync(Cliente cliente);
+        Task DeleteAsync(Cliente cliente, CancellationToken cancellationToken);
         Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken);
     }
 }

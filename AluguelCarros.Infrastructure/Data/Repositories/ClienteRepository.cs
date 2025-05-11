@@ -44,6 +44,12 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             return await _context.Clientes.AnyAsync(c => c.CPF == cpf, cancellationToken);
         }
 
-        
+        public async Task DeleteAsync(Cliente cliente, CancellationToken cancellationToken)
+        {
+            _context.Clientes.Remove(cliente);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+
     }
 }

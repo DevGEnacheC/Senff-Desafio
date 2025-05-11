@@ -42,6 +42,14 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
                 ]);
             }
 
+            if (request.DataDevolucao < aluguel.DataInicio)
+            {
+                throw new FluentValidationException(
+                [
+                    new FluentValidation.Results.ValidationFailure("DataDevolucao",
+                    "A data de devolução não pode ser menor que a data inicio.")
+                ]);
+            }
             var carro = await _carroRepository.GetByIdAsync(aluguel.CarroId);
             if(carro == null)
             {

@@ -50,5 +50,19 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             return await _context.Carros.AnyAsync(
                    c => c.Id == id && c.Disponivel, cancellationToken);
         }
+
+        public async Task<List<Carro>> GetByDisponibilidadeAsync(bool disponivel)
+        {
+            return await _context.Carros
+            .Where(c => c.Disponivel == disponivel)
+            .ToListAsync();
+        }
+
+
+        public async Task DeleteAsync(Carro carro, CancellationToken cancellationToken)
+        {
+            _context.Carros.Remove(carro);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
