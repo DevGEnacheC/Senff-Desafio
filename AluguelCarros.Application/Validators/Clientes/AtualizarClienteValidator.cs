@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AluguelCarros.Application.Commands.Clientes.Commands;
+﻿using AluguelCarros.Application.Commands.Clientes.Commands;
 using FluentValidation;
 
 namespace AluguelCarros.Application.Validators.Clientes
 {
-    public class CriarClienteCommandValidator : AbstractValidator<CriarClienteCommand>
+    public class AtualizarClienteValidator : AbstractValidator<AtualizarClienteCommand>
     {
+
         const int maxCharNome = 100;
 
         /// <summary>
         ///  Máximo de 11 caracteres para um CPF no padrão do Brasil.
         /// </summary>
-        const int lengthCPF= 11;
+        const int lengthCPF = 11;
 
-        public CriarClienteCommandValidator()
+        /// <summary>
+        /// Usa as mesmas validações que o CriarClienteCommandValidator!
+        /// </summary>
+        public AtualizarClienteValidator()
         {
 
             RuleFor(x => x.Nome)

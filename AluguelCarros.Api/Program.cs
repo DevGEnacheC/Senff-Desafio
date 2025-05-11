@@ -1,7 +1,5 @@
 using AluguelCarros.Api.Middleware;
-using AluguelCarros.Application.Commands.Alugueis.Commands;
-using AluguelCarros.Application.Commands.Carros.Commands;
-using AluguelCarros.Application.Commands.Clientes.Commands;
+using AluguelCarros.Application;
 using AluguelCarros.Application.Validators.Behaviors;
 using AluguelCarros.Infrastructure.Data;
 using FluentValidation;
@@ -14,13 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddMediatR(typeof(CriarCarroCommand).Assembly);
-builder.Services.AddMediatR(typeof(CriarClienteCommand).Assembly);
-builder.Services.AddMediatR(typeof(CriarAluguelCommand).Assembly);
-
-builder.Services.AddValidatorsFromAssembly(typeof(CriarCarroCommand).Assembly);
-builder.Services.AddValidatorsFromAssembly(typeof(CriarClienteCommand).Assembly);
-builder.Services.AddValidatorsFromAssembly(typeof(CriarAluguelCommand).Assembly);
+builder.Services.AddMediatR(typeof(ApplicationAssemblyReference).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(ApplicationAssemblyReference).Assembly);
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 

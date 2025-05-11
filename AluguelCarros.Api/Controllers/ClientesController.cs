@@ -30,5 +30,16 @@ namespace AluguelCarros.Api.Controllers
             var clientes = await _mediator.Send(query);
             return Ok(clientes);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarCliente(Guid id, [FromBody] AtualizarClienteCommand command)
+        {
+            // Para seguir o padrão RESTFull é enviado o id como path parameter
+            if (id != command.Id)
+                return BadRequest("Id da rota e do body não coincidem");
+
+            var clienteId = await _mediator.Send(command);
+            return Ok(clienteId);
+        }
     }
 }

@@ -14,5 +14,11 @@
             Nome = nome;
             CPF = cpf;
         }
+
+        public void Update(string nome, string cpf)
+        {
+            Nome = nome;
+            CPF = cpf;
+        }
     }
 }
