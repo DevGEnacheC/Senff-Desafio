@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
-using FluentValidation.Results;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using FluentValidation.Results;
 
 namespace AluguelCarros.Application.Exceptions
 {

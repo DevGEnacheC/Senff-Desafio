@@ -1,23 +1,23 @@
 ﻿using AluguelCarros.Infrastructure.Data.Repositories;
-using AluguelCarros.Infrastructure.Data;
-using AluguelCarros.Infrastructure.Entities;
+using AluguelCarros.Domain.Entities;
 using MediatR;
+using AluguelCarros.Domain.Repositories;
 using AluguelCarros.Application.Queries.Alugueis.Queries;
 
 namespace AluguelCarros.Application.Queries.Alugueis.Handlers
 {
     public class ListarAlugueisQueryHandler : IRequestHandler<ListarAlugueisQuery, List<Aluguel>>
     {
-        private readonly AluguelRepository repository;
+        private readonly IAluguelRepository _repository;
 
-        public ListarAlugueisQueryHandler(AppDbContext context)
+        public ListarAlugueisQueryHandler(IAluguelRepository aluguelRepository)
         {
-            repository = new(context);
+            _repository = aluguelRepository;
         }
 
-        async Task<List<Aluguel>> IRequestHandler<ListarAlugueisQuery, List<Aluguel>>.Handle(ListarAlugueisQuery request, CancellationToken cancellationToken)
+        public async Task<List<Aluguel>> Handle(ListarAlugueisQuery request, CancellationToken cancellationToken)
         {
-            return await repository.GetAllAsync(cancellationToken);
+            return await _repository.GetAllAsync(cancellationToken);
         }
     }
 }

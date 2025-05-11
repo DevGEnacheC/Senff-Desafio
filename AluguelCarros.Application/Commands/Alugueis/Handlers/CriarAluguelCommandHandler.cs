@@ -1,26 +1,30 @@
 ﻿using AluguelCarros.Application.Exceptions;
-using AluguelCarros.Infrastructure.Data.Repositories;
-using AluguelCarros.Infrastructure.Data;
-using AluguelCarros.Infrastructure.Entities;
+using AluguelCarros.Domain.Repositories;
+using AluguelCarros.Domain.Entities;
 using MediatR;
 using AluguelCarros.Application.Commands.Alugueis.Commands;
 using AluguelCarros.Application.Events.Alugueis.Events;
+using AluguelCarros.Infrastructure.Data.Repositories;
 
 namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 {
     public class CriarAluguelCommandHandler : IRequestHandler<CriarAluguelCommand, Guid>
     {
-        private readonly AluguelRepository _aluguelRepository;
-        private readonly CarroRepository _carroRepository;
-        private readonly ClienteRepository _clienteRepository;
+        private readonly IAluguelRepository _aluguelRepository;
+        private readonly ICarroRepository _carroRepository;
+        private readonly IClienteRepository _clienteRepository;
 
         private readonly IMediator _mediator;
 
-        public CriarAluguelCommandHandler(AppDbContext context, IMediator mediator)
+        public CriarAluguelCommandHandler(
+            IAluguelRepository aluguelRepository,
+            ICarroRepository carroRepository,
+            IClienteRepository clienteRepository,
+            IMediator mediator)
         {
-            _aluguelRepository = new(context);
-            _carroRepository = new(context);
-            _clienteRepository = new(context);
+            _aluguelRepository = aluguelRepository;
+            _carroRepository = carroRepository;
+            _clienteRepository = clienteRepository;
             _mediator = mediator;
         }
 

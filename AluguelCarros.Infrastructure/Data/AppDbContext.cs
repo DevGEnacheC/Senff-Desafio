@@ -1,4 +1,4 @@
-﻿using AluguelCarros.Infrastructure.Entities;
+﻿using AluguelCarros.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AluguelCarros.Infrastructure.Data

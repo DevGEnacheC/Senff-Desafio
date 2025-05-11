@@ -1,4 +1,4 @@
-﻿namespace AluguelCarros.Infrastructure.Entities
+﻿namespace AluguelCarros.Domain.Entities
 {
     public class Carro
     {

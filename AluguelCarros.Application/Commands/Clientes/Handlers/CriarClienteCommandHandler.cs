@@ -1,27 +1,27 @@
 ﻿using AluguelCarros.Application.Events.Clientes.Events;
 using AluguelCarros.Application.Exceptions;
 using AluguelCarros.Infrastructure.Data.Repositories;
-using AluguelCarros.Infrastructure.Data;
-using AluguelCarros.Infrastructure.Entities;
+using AluguelCarros.Domain.Entities;
 using MediatR;
 using AluguelCarros.Application.Commands.Clientes.Commands;
+using AluguelCarros.Domain.Repositories;
 
 namespace AluguelCarros.Application.Commands.Clientes.Handlers
 {
     public class CriarClienteCommandHandler : IRequestHandler<CriarClienteCommand, Guid>
     {
-        private readonly ClienteRepository repository;
+        private readonly IClienteRepository _repository;
         private readonly IMediator _mediator;
 
-        public CriarClienteCommandHandler(AppDbContext context, IMediator mediator)
+        public CriarClienteCommandHandler(IClienteRepository clienteRepository, IMediator mediator)
         {
-            repository = new(context);
+            _repository = clienteRepository;
             _mediator = mediator;
         }
 
         public async Task<Guid> Handle(CriarClienteCommand request, CancellationToken cancellationToken)
         {
-            if (await repository.ExistsByCPFAsync(request.CPF, cancellationToken))
+            if (await _repository.ExistsByCPFAsync(request.CPF, cancellationToken))
             {
                 throw new FluentValidationException(
                 [
@@ -31,7 +31,7 @@ namespace AluguelCarros.Application.Commands.Clientes.Handlers
 
             var cliente = new Cliente(request.Nome, request.CPF);
 
-            await repository.AddAsync(cliente);
+            await _repository.AddAsync(cliente);
 
             var evento = new ClienteCriadoEvent(cliente.Id, cliente.Nome, cliente.CPF);
             await _mediator.Publish(evento, cancellationToken);

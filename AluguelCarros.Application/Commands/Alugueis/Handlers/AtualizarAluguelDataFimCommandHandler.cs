@@ -1,22 +1,22 @@
 ﻿using AluguelCarros.Application.Commands.Alugueis.Commands;
 using AluguelCarros.Application.Events.Alugueis.Events;
 using AluguelCarros.Application.Exceptions;
-using AluguelCarros.Infrastructure.Data;
 using AluguelCarros.Infrastructure.Data.Repositories;
-using AluguelCarros.Infrastructure.Entities;
-using AluguelCarros.Infrastructure.Repositories;
+using AluguelCarros.Domain.Repositories;
 using MediatR;
 
 namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 {
     public class AtualizarAluguelDataFimCommandHandler : IRequestHandler<AtualizarAluguelDataFimCommand, Guid>
     {
-        private readonly AluguelRepository _repository;
+        private readonly IAluguelRepository _repository;
         private readonly IMediator _mediator;
 
-        public AtualizarAluguelDataFimCommandHandler(AppDbContext context, IMediator mediator)
+        public AtualizarAluguelDataFimCommandHandler(
+            IAluguelRepository aluguelRepository, 
+            IMediator mediator)
         {
-            _repository = new(context);
+            _repository = aluguelRepository;
             _mediator = mediator;
         }
 

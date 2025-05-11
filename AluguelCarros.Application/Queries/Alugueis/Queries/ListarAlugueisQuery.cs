@@ -1,4 +1,4 @@
-﻿using AluguelCarros.Infrastructure.Entities;
+﻿using AluguelCarros.Domain.Entities;
 using MediatR;
 
 namespace AluguelCarros.Application.Queries.Alugueis.Queries

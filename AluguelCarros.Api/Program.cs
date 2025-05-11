@@ -2,6 +2,8 @@ using AluguelCarros.Api.Middleware;
 using AluguelCarros.Application;
 using AluguelCarros.Application.Validators.Behaviors;
 using AluguelCarros.Infrastructure.Data;
+using AluguelCarros.Infrastructure.Data.Repositories;
+using AluguelCarros.Domain.Repositories;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,11 @@ builder.Services.AddMediatR(typeof(ApplicationAssemblyReference).Assembly);
 builder.Services.AddValidatorsFromAssembly(typeof(ApplicationAssemblyReference).Assembly);
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+
+builder.Services.AddScoped<ICarroRepository, CarroRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IAluguelRepository, AluguelRepository>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

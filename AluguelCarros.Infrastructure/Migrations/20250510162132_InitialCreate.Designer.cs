@@ -25,7 +25,7 @@ namespace AluguelCarros.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Aluguel", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Aluguel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Alugueis");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Carro", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Carro", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Carros");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Cliente", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,15 +109,15 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Aluguel", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Aluguel", b =>
                 {
-                    b.HasOne("AluguelCarros.Infrastructure.Entities.Carro", null)
+                    b.HasOne("AluguelCarros.Domain.Entities.Carro", null)
                         .WithMany()
                         .HasForeignKey("CarroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AluguelCarros.Infrastructure.Entities.Cliente", null)
+                    b.HasOne("AluguelCarros.Domain.Entities.Cliente", null)
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)

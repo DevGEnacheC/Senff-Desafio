@@ -1,21 +1,24 @@
 ﻿using AluguelCarros.Infrastructure.Data.Repositories;
-using AluguelCarros.Infrastructure.Data;
 using MediatR;
 using AluguelCarros.Application.Exceptions;
 using AluguelCarros.Application.Events.Clientes.Events;
+using AluguelCarros.Domain.Repositories;
 
 namespace AluguelCarros.Application.Commands.Clientes.Commands
 {
     public class DeletarClienteCommandHandler : IRequestHandler<DeletarClienteCommand, Guid>
     {
-        private readonly ClienteRepository _clienteRepository;
-        private readonly AluguelRepository _aluguelRepository;
+        private readonly IClienteRepository _clienteRepository;
+        private readonly IAluguelRepository _aluguelRepository;
         private readonly IMediator _mediator;
 
-        public DeletarClienteCommandHandler(AppDbContext context, IMediator mediator)
+        public DeletarClienteCommandHandler(
+            IClienteRepository clienteRepository,
+            IAluguelRepository aluguelRepository,
+            IMediator mediator)
         {
-            _aluguelRepository = new(context);
-            _clienteRepository = new(context);
+            _clienteRepository = clienteRepository;
+            _aluguelRepository = aluguelRepository;
             _mediator = mediator;
         }
 

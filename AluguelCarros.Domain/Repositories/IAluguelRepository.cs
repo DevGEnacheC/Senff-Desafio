@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AluguelCarros.Infrastructure.Entities;
+﻿using AluguelCarros.Domain.Entities;
 
-namespace AluguelCarros.Infrastructure.Repositories
+namespace AluguelCarros.Domain.Repositories
 {
     public interface IAluguelRepository
     {

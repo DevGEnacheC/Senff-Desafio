@@ -1,5 +1,5 @@
-﻿using AluguelCarros.Infrastructure.Entities;
-using AluguelCarros.Infrastructure.Repositories;
+﻿using AluguelCarros.Domain.Entities;
+using AluguelCarros.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace AluguelCarros.Infrastructure.Data.Repositories
