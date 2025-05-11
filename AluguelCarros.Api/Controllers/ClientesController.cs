@@ -1,5 +1,5 @@
 ﻿using AluguelCarros.Application.Commands.Clientes.Commands;
-using AluguelCarros.Application.Queries;
+using AluguelCarros.Application.Queries.Clientes.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

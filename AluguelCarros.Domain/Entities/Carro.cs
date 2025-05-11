@@ -24,6 +24,14 @@
             Placa = placa;
         }
 
+        public void Update(string marca, string modelo, int ano, string placa) 
+        {
+            Marca = marca;
+            Modelo = modelo;
+            Ano = ano;
+            Placa = placa;
+        }
+
         public void Reservar()
         {
             Disponivel = false;

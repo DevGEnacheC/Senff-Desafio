@@ -1,10 +1,10 @@
-﻿using AluguelCarros.Application.Events;
-using AluguelCarros.Application.Exceptions;
+﻿using AluguelCarros.Application.Exceptions;
 using AluguelCarros.Infrastructure.Data.Repositories;
 using AluguelCarros.Infrastructure.Data;
 using AluguelCarros.Infrastructure.Entities;
 using MediatR;
 using AluguelCarros.Application.Commands.Alugueis.Commands;
+using AluguelCarros.Application.Events.Alugueis.Events;
 
 namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 {

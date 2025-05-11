@@ -1,5 +1,5 @@
 ﻿using AluguelCarros.Application.Commands.Carros.Commands;
-using AluguelCarros.Application.Queries;
+using AluguelCarros.Application.Queries.Carros.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +29,17 @@ namespace AluguelCarros.Api.Controllers
             var query = new ListarCarrosQuery();
             var carros = await _mediator.Send(query);
             return Ok(carros);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarCarro(Guid id, [FromBody] AtualizarCarroCommand command)
+        {
+            // Para seguir o padrão RESTFull é enviado o id como path parameter
+            if (id != command.Id)
+                return BadRequest("Id da rota e do body não coincidem");
+
+            var carroId = await _mediator.Send(command);
+            return Ok(carroId);
         }
     }
 }

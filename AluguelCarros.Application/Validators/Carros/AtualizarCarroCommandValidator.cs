@@ -1,9 +1,14 @@
-﻿using AluguelCarros.Application.Commands.Carros.Commands;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AluguelCarros.Application.Commands.Carros.Commands;
 using FluentValidation;
 
 namespace AluguelCarros.Application.Validators.Carros
 {
-    public class CriarCarroCommandValidator : AbstractValidator<CriarCarroCommand>
+    public class AtualizarCarroCommandValidator : AbstractValidator<AtualizarCarroCommand>
     {
         /// <summary>
         /// A diferença entre o ano atual e o de lançamento não deve ser maior que 30 anos.
@@ -19,9 +24,12 @@ namespace AluguelCarros.Application.Validators.Carros
         ///  <br></br>
         ///  <i>Ex: ABC-1234 // 8 carcateres!</i>
         /// </summary>
-        const int maxCharPlaca = 8; 
+        const int maxCharPlaca = 8;
 
-        public CriarCarroCommandValidator()
+        /// <summary>
+        /// Usa as mesmas validações que o CriarCarroCommandValidator!
+        /// </summary>
+        public AtualizarCarroCommandValidator()
         {
             RuleFor(x => x.Ano)
                 .GreaterThan(minAno).WithMessage(string.Format("O ano deve ser maior que {0}.", minAno))

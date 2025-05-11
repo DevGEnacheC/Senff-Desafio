@@ -1,4 +1,4 @@
-﻿using AluguelCarros.Application.Events;
+﻿using AluguelCarros.Application.Events.Clientes.Events;
 using AluguelCarros.Application.Exceptions;
 using AluguelCarros.Infrastructure.Data.Repositories;
 using AluguelCarros.Infrastructure.Data;
