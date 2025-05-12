@@ -32,7 +32,7 @@ namespace AluguelCarros.Api.Controllers
 
         /// <summary>
         /// Mostra todos os carros filtrados por disponivel= true || flase, caso null retorna
-        /// todos os carros, quem pode acessar: Admin
+        /// todos os carros, quem pode acessar: Cliente e Admin
         /// </summary>
         /// <returns>Lista de todos os carros filtrados(sim ou não) por disponibilidade</returns>
         [HttpGet]

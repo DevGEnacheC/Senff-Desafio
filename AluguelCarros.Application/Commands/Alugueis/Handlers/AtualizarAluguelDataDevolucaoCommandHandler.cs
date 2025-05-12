@@ -76,7 +76,7 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
             double valorNormal = aluguel.DiasNormais() * carro.PrecoDiaria;
             double taxaAtraso = (aluguel.DiasAtraso() * carro.PrecoDiaria) * 1.55;
 
-            return string.Format("Valor do aluguel: R${0} | Taxa por atraso: R${1} | Total: {2}", 
+            return string.Format("Valor do aluguel: R${0} | Taxa por atraso: R${1} | Total: R${2}", 
                 valorNormal, 
                 taxaAtraso, valorNormal + taxaAtraso);
         }
