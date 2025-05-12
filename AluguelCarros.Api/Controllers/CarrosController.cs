@@ -18,6 +18,10 @@ namespace AluguelCarros.Api.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Adiciona um novo carro, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Id do carro criado</returns>
         [HttpPost]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> CriarCarro([FromBody] CriarCarroCommand command)
@@ -26,6 +30,11 @@ namespace AluguelCarros.Api.Controllers
             return Ok(carroId);   
         }
 
+        /// <summary>
+        /// Mostra todos os carros filtrados por disponivel= true || flase, caso null retorna
+        /// todos os carros, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Lista de todos os carros filtrados(sim ou não) por disponibilidade</returns>
         [HttpGet]
         public async Task<IActionResult> ListarCarros([FromQuery] bool? disponivel)
         {
@@ -34,6 +43,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(carros);
         }
 
+        /// <summary>
+        /// Edita um carro, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Id do carro editado</returns>
         [HttpPut("{id}")]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AtualizarCarro(Guid id, [FromBody] AtualizarCarroCommand command)
@@ -46,6 +59,11 @@ namespace AluguelCarros.Api.Controllers
             return Ok(carroId);
         }
 
+
+        /// <summary>
+        /// Deleta um carro se o mesmo não possuir nenhum vinculo com aluguel, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Id do carro deletado</returns>
         [HttpDelete("{id}")]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeletarCarro(Guid id)

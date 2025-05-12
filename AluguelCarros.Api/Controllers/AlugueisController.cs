@@ -18,14 +18,21 @@ namespace AluguelCarros.Api.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Adiciona um novo aluguel, quem pode acessar: Cliente e Admin
+        /// </summary>
+        /// <returns>Id do aluguel criado</returns>
         [HttpPost]
-        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> CriarAluguel([FromBody] CriarAluguelCommand command)
         {
             var aluguelId = await _mediator.Send(command);
             return Ok(aluguelId);
         }
 
+        /// <summary>
+        /// Mostra todos os alugueis existentes, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Lista de todos os alugueis</returns>
         [HttpGet]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ListarAlugueis()
@@ -36,6 +43,10 @@ namespace AluguelCarros.Api.Controllers
 
         }
 
+        /// <summary>
+        /// Edita a data fim de um aluguel, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Id do aluguel alterado</returns>
         [HttpPatch("{id}")]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AtualizarAluguelDataFim(Guid id, [FromBody] AtualizarAluguelDataFimCommand command)
@@ -48,6 +59,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(aluguelId);
         }
 
+        /// <summary>
+        /// Finaliza o aluguel do carro, quem pode acessar: Cliente e Admin
+        /// </summary>
+        /// <returns>Um sumario com o valor do aluguel, taxa de atraso e o valor total(valor do aluguel + taxa de atraso)</returns>
         [HttpPatch("{id}/devolver")]
         public async Task<IActionResult> AtualizarAluguelDataDevolucao(Guid id, [FromBody] AtualizarAluguelDataDevolucaoCommand command)
         {
@@ -59,6 +74,11 @@ namespace AluguelCarros.Api.Controllers
             return Ok(infos);
         }
 
+
+        /// <summary>
+        /// Retorna os valores de um aluguel, quem pode acessar: Cliente e Admin
+        /// </summary>
+        /// <returns>Um sumario com o valor do aluguel, taxa de atraso e o valor total(valor do aluguel + taxa de atraso)</returns>
         [HttpGet("{id}/total")]
         public async Task<IActionResult> AluguelTotal(Guid id)
         {
@@ -67,6 +87,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(infos);
         }
 
+        /// <summary>
+        /// Mostra todos os alugueis vinculados a um carro, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Lista de todos os alugueis vinculados a um carro</returns>
         [HttpGet("{carroId}/carro")]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ListarAlugueisCarro(Guid carroId)
@@ -76,6 +100,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(alugueis);
         }
 
+        /// <summary>
+        /// Mostra todos os alugueis vinculados a um cliente, quem pode acessar: Cliente e Admin
+        /// </summary>
+        /// <returns>Lista de todos os alugueis vinculados a um cliente</returns>
         [HttpGet("{clienteId}/cliente")]
         public async Task<IActionResult> ListarAlugueisCliente(Guid clienteId)
         {

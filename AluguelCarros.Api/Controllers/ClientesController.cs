@@ -18,6 +18,10 @@ namespace AluguelCarros.Api.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Adiciona um novo cliente, quem pode acessar: Cliente e Admin
+        /// </summary>
+        /// <returns>Id do cliente criado</returns>
         [HttpPost]
         public async Task<IActionResult> CriarCliente([FromBody] CriarClienteCommand command)
         {
@@ -25,6 +29,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(cliente);
         }
 
+        /// <summary>
+        /// Mostra todos os clientes, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Lista de todos os clientes</returns>
         [HttpGet]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ListarClientes()
@@ -34,6 +42,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(clientes);
         }
 
+        /// <summary>
+        /// Edita um cliente, quem pode acessar: Cliente Admin
+        /// </summary>
+        /// <returns>Id do cliente editado</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> AtualizarCliente(Guid id, [FromBody] AtualizarClienteCommand command)
         {
@@ -45,6 +57,10 @@ namespace AluguelCarros.Api.Controllers
             return Ok(clienteId);
         }
 
+        /// <summary>
+        /// Deleta um cliente se o mesmo não possuir nenhum vinculo com aluguel, quem pode acessar: Admin
+        /// </summary>
+        /// <returns>Id do cliente deletado</returns>
         [HttpDelete("{id}")]
         [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeletarCliente(Guid id)
