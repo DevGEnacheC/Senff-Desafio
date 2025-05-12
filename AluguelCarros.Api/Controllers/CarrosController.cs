@@ -1,12 +1,14 @@
 ﻿using AluguelCarros.Application.Commands.Carros.Commands;
 using AluguelCarros.Application.Queries.Carros.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AluguelCarros.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CarrosController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -17,6 +19,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> CriarCarro([FromBody] CriarCarroCommand command)
         {
             var carroId = await _mediator.Send(command);
@@ -24,6 +27,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpGet]
+        
         public async Task<IActionResult> ListarCarros([FromQuery] bool? disponivel)
         {
             var query = new ListarCarrosQuery(disponivel);
@@ -32,6 +36,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AtualizarCarro(Guid id, [FromBody] AtualizarCarroCommand command)
         {
             // Para seguir o padrão RESTFull é enviado o id como path parameter
@@ -43,6 +48,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> DeletarCarro(Guid id)
         {
             var command = new DeletarCarroCommand(id);

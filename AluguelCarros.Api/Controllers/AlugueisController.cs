@@ -1,12 +1,14 @@
 ﻿using AluguelCarros.Application.Commands.Alugueis.Commands;
 using AluguelCarros.Application.Queries.Alugueis.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AluguelCarros.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AlugueisController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -17,6 +19,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> CriarAluguel([FromBody] CriarAluguelCommand command)
         {
             var aluguelId = await _mediator.Send(command);
@@ -33,6 +36,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPatch("{id}")]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AtualizarAluguelDataFim(Guid id, [FromBody] AtualizarAluguelDataFimCommand command)
         {
             // Para seguir o padrão RESTFull é enviado o id como path parameter
