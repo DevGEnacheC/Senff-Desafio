@@ -122,4 +122,4 @@ curl -X POST http://localhost:5001/connect/token \
 Após executar os comandos copie o valor de **access_token**.
 
 ### Swagger
-Com o projeto iniciado utilize a rota do [Swagger](http://localhost:5001/swagger/index.html) para testar os endpoints, para poder acessar as rotas é necessário um [token](###Tokens), com o token em mãos, cole no **Authorize** do Swagger, pronto já é possivel testar todos os endpoints!
+Com o projeto iniciado utilize a rota do [Swagger](http://localhost:5001/swagger/index.html) para testar os endpoints, para poder acessar as rotas é necessário um token, com o token em mãos, cole no **Authorize** do Swagger, pronto já é possivel testar todos os endpoints!
