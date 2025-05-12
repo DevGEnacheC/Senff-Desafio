@@ -30,7 +30,6 @@ namespace AluguelCarros.Application.Commands.Carros.Handlers
                 ]);
             }
 
-            // Se a Placa for alterada
             if (carro.Placa != request.Placa)
             {
                 if (await _repository.ExistsByPlacaAsync(request.Placa, cancellationToken))
@@ -51,11 +50,11 @@ namespace AluguelCarros.Application.Commands.Carros.Handlers
                 ]);
             }
 
-            carro.Update(request.Marca, request.Modelo, request.Ano, request.Placa);
+            carro.Update(request.Marca, request.Modelo, request.Ano, request.Placa, request.Cor, request.PrecoDiaria);
 
             await _repository.UpdateAsync(carro);
 
-            var evento = new CarroAtualizadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa, carro.Disponivel);
+            var evento = new CarroAtualizadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa, carro.Cor, carro.PrecoDiaria);
             await _mediator.Publish(evento, cancellationToken);
 
             return carro.Id;

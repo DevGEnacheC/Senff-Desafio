@@ -1,7 +1,6 @@
 ﻿using AluguelCarros.Application.Commands.Alugueis.Commands;
 using AluguelCarros.Application.Events.Alugueis.Events;
 using AluguelCarros.Application.Exceptions;
-using AluguelCarros.Infrastructure.Data.Repositories;
 using AluguelCarros.Domain.Repositories;
 using MediatR;
 
@@ -31,6 +30,15 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
                    new FluentValidation.Results.ValidationFailure("Id", 
                     "O aluguel especificado não existe.")
                ]);
+            }
+
+            if (aluguel.DataDevolucao != null)
+            {
+                throw new FluentValidationException(
+                [
+                    new FluentValidation.Results.ValidationFailure("DataDevolucao",
+                    "O aluguel já foi finalizado, não é possivel editar um aluguel já finalizado.")
+                ]);
             }
 
             if (aluguel.DataInicio > request.DataFim)

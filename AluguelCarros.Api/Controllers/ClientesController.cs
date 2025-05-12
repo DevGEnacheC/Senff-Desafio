@@ -1,5 +1,4 @@
-﻿using AluguelCarros.Application.Commands.Carros.Commands;
-using AluguelCarros.Application.Commands.Clientes.Commands;
+﻿using AluguelCarros.Application.Commands.Clientes.Commands;
 using AluguelCarros.Application.Queries.Clientes.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +19,6 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> CriarCliente([FromBody] CriarClienteCommand command)
         {
             var cliente = await _mediator.Send(command);
@@ -28,6 +26,7 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> ListarClientes()
         {
             var query = new ListarClientesQuery();
@@ -36,7 +35,6 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> AtualizarCliente(Guid id, [FromBody] AtualizarClienteCommand command)
         {
             // Para seguir o padrão RESTFull é enviado o id como path parameter

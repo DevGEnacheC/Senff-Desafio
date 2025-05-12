@@ -27,7 +27,6 @@ namespace AluguelCarros.Api.Controllers
         }
 
         [HttpGet]
-        
         public async Task<IActionResult> ListarCarros([FromQuery] bool? disponivel)
         {
             var query = new ListarCarrosQuery(disponivel);

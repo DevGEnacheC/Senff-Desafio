@@ -29,11 +29,11 @@ namespace AluguelCarros.Application.Commands.Carros.Handlers
                 ]);
             }
 
-            var carro = new Carro(request.Marca, request.Modelo, request.Ano, request.Placa);
+            var carro = new Carro(request.Marca, request.Modelo, request.Ano, request.Placa, request.Cor, request.PrecoDiaria);
             
             await _repository.AddAsync(carro);
 
-            var evento = new CarroCriadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa);
+            var evento = new CarroCriadoEvent(carro.Id, carro.Marca, carro.Modelo, carro.Ano, carro.Placa, carro.Cor, carro.PrecoDiaria);
             await _mediator.Publish(evento, cancellationToken);
 
             return carro.Id;

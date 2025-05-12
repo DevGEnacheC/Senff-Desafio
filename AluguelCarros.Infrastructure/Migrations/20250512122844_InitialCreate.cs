@@ -20,7 +20,9 @@ namespace AluguelCarros.Infrastructure.Migrations
                     Modelo = table.Column<string>(type: "text", nullable: false),
                     Ano = table.Column<int>(type: "integer", nullable: false),
                     Placa = table.Column<string>(type: "text", nullable: false),
-                    Disponivel = table.Column<bool>(type: "boolean", nullable: false)
+                    Cor = table.Column<string>(type: "text", nullable: false),
+                    Disponivel = table.Column<bool>(type: "boolean", nullable: false),
+                    PrecoDiaria = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,8 +51,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     ClienteId = table.Column<Guid>(type: "uuid", nullable: false),
                     DataInicio = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DataFim = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataDevolucao = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    TaxaAtraso = table.Column<decimal>(type: "numeric", nullable: false)
+                    DataDevolucao = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,6 +84,12 @@ namespace AluguelCarros.Infrastructure.Migrations
                 name: "IX_Carros_Placa",
                 table: "Carros",
                 column: "Placa",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clientes_CPF",
+                table: "Clientes",
+                column: "CPF",
                 unique: true);
         }
 

@@ -15,11 +15,10 @@ namespace AluguelCarros.Application.Events.Alugueis.Handlers
 
         public Task Handle(AluguelCriadoEvent notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Aluguel criado: Id={Id}, CarroId={CarroId}, ClienteId={ClienteId}, DataInicio={DataInicio}, DataFim={DataFim}, ValorAluguel={ValorAluguel}",
+            _logger.LogInformation("Aluguel criado: Id={Id}, CarroId={CarroId}, ClienteId={ClienteId}, DataInicio={DataInicio}, DataFim={DataFim}",
                 notification.Id, 
                 notification.CarroId, notification.ClienteId, 
-                notification.DataInicio, notification.DataFim,
-                notification.ValorAluguel);
+                notification.DataInicio, notification.DataFim);
             return Task.CompletedTask;
         }
     }

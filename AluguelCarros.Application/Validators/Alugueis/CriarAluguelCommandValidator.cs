@@ -26,10 +26,6 @@ namespace AluguelCarros.Application.Validators.Alugueis
                 .NotEmpty().WithMessage("A data de fim é obrigatória.")
                 .GreaterThan(x => x.DataInicio)
                     .WithMessage("A data de fim deve ser posterior à data de início.");
-
-            RuleFor(x => x.ValorAluguel)
-                .GreaterThan(0)
-                    .WithMessage("O valor do aluguel deve ser maior que 0.");
         }
     }
 }

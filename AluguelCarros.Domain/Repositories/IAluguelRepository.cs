@@ -10,5 +10,7 @@ namespace AluguelCarros.Domain.Repositories
         Task<List<Aluguel>> GetAllAsync(CancellationToken cancellationToken);
         Task<bool> CheckCarAvailabilityAsync(Guid carroId, CancellationToken cancellationToken);
         Task<bool> CheckClienteAvailabilityAsync(Guid cleinteId, CancellationToken cancellationToken);
+        Task<List<Aluguel>> GetByCarro(Guid carroId);
+        Task<List<Aluguel>> GetByCliente(Guid clienteId);
     }
 }

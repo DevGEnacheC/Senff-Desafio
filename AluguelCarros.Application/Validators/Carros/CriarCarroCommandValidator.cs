@@ -46,6 +46,12 @@ namespace AluguelCarros.Application.Validators.Carros
                 .MaximumLength(maxCharPlaca)
                     .WithMessage(string.Format("A placa não pode exceder {0} caracteres."
                     , maxCharPlaca));
+
+            RuleFor(x => x.Cor)
+                .NotEmpty().WithMessage("A cor é obrigatória.");
+
+            RuleFor(x => x.PrecoDiaria)
+                .GreaterThan(0).WithMessage("O preço diaria deve ser maior que zero.");
         }
     }
 }

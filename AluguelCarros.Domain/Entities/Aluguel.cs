@@ -8,22 +8,17 @@
         public DateTime DataInicio { get; private set; }
         public DateTime DataFim { get; private set; }
         public DateTime? DataDevolucao { get; private set; }
-        public decimal ValorAluguel { get; private set; }
-        public decimal TaxaAtraso { get; private set; }
 
         private Aluguel() { }
 
-        public Aluguel(Guid carroId, Guid clienteId, 
-                       DateTime dataInicio, DateTime dataFim, 
-                       decimal valorAluguel)
+        public Aluguel(Guid carroId, Guid clienteId,
+                       DateTime dataInicio, DateTime dataFim)
         {
             Id = Guid.NewGuid();
             CarroId = carroId;
             ClienteId = clienteId;
             DataInicio = dataInicio;
             DataFim = dataFim;
-            ValorAluguel = valorAluguel;
-            TaxaAtraso = 0;
         }
 
         public void UpdateDataFim(DateTime dataFim)
@@ -34,25 +29,22 @@
         public void Devolver(DateTime dataDevolucao)
         {
             DataDevolucao = dataDevolucao;
-            if (dataDevolucao > DataFim)
-            {
-                TaxaAtraso = CalcularTaxaAtraso(dataDevolucao);
-            }
         }
 
-        private decimal CalcularTaxaAtraso(DateTime dataDevolucao)
+        public int DiasNormais()
         {
-            var diasAtraso = (dataDevolucao - DataFim).Days;
+            if(DataDevolucao != null && DataDevolucao < DataFim)
+            {
+                return ((DataDevolucao ?? DateTime.Today) - DataInicio).Days;
+            }
 
-            // 50% a mais do aluguel por dia atrasado!
-            // Ou seja, 2 dias de atraso equivalem ao preço original do aluguel.
-            return diasAtraso * 50;
+            return (DataFim - DataInicio).Days;
         }
 
-        public decimal ValorTotal()
-        {   
-            if(TaxaAtraso > 0) return ValorAluguel + (ValorAluguel * (TaxaAtraso / 100));
-            return ValorAluguel;
+        public int DiasAtraso()
+        {
+            return ((DataDevolucao ?? DataFim) - DataFim).Days;
         }
+
     }
 }

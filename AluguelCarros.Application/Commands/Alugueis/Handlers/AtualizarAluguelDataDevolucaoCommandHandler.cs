@@ -7,7 +7,7 @@ using AluguelCarros.Domain.Repositories;
 
 namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 {
-    public class AtualizarAluguelDataDevolucaoCommandHandler : IRequestHandler<AtualizarAluguelDataDevolucaoCommand, Guid>
+    public class AtualizarAluguelDataDevolucaoCommandHandler : IRequestHandler<AtualizarAluguelDataDevolucaoCommand, string>
     {
         private readonly IAluguelRepository _aluguelRepository;
         private readonly ICarroRepository _carroRepository;
@@ -23,7 +23,7 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
             _mediator = mediator;
         }
 
-        public async Task<Guid> Handle(AtualizarAluguelDataDevolucaoCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(AtualizarAluguelDataDevolucaoCommand request, CancellationToken cancellationToken)
         {
             var aluguel = await _aluguelRepository.GetByIdAsync(request.Id);
 
@@ -72,7 +72,13 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
             var evento = new AluguelDataDevolucaoAtualizadoEvent(aluguel.Id, aluguel.DataDevolucao);
             await _mediator.Publish(evento, cancellationToken);
 
-            return aluguel.Id;
+
+            double valorNormal = aluguel.DiasNormais() * carro.PrecoDiaria;
+            double taxaAtraso = (aluguel.DiasAtraso() * carro.PrecoDiaria) * 1.55;
+
+            return string.Format("Valor do aluguel: R${0} | Taxa por atraso: R${1} | Total: {2}", 
+                valorNormal, 
+                taxaAtraso, valorNormal + taxaAtraso);
         }
     }
 }

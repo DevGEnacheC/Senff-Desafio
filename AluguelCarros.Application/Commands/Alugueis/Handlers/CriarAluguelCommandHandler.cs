@@ -60,8 +60,7 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
             var aluguel = new Aluguel(
                 request.CarroId, 
                 request.ClienteId, 
-                request.DataInicio, request.DataFim,
-                request.ValorAluguel);
+                request.DataInicio, request.DataFim);
 
             await _aluguelRepository.AddAsync(aluguel);
 
@@ -71,8 +70,7 @@ namespace AluguelCarros.Application.Commands.Alugueis.Handlers
 
             var evento = new AluguelCriadoEvent(aluguel.Id, 
                                                 aluguel.CarroId, aluguel.ClienteId,
-                                                aluguel.DataInicio, aluguel.DataFim,
-                                                aluguel.ValorAluguel);
+                                                aluguel.DataInicio, aluguel.DataFim);
             await _mediator.Publish(evento, cancellationToken);
 
             return aluguel.Id;

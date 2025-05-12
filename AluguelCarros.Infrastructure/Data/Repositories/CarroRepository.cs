@@ -58,7 +58,6 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             .ToListAsync();
         }
 
-
         public async Task DeleteAsync(Carro carro, CancellationToken cancellationToken)
         {
             _context.Carros.Remove(carro);

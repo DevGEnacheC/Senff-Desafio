@@ -45,5 +45,14 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             return await _context.Alugueis.AnyAsync(c => c.ClienteId == clienteId, cancellationToken);
         }
 
+        public async Task<List<Aluguel>> GetByCarro(Guid carroId)
+        {
+            return await _context.Alugueis.Where(c => c.CarroId == carroId).ToListAsync();
+        }
+
+        public async Task<List<Aluguel>> GetByCliente(Guid clienteId)
+        {
+            return await _context.Alugueis.Where(c => c.ClienteId == clienteId).ToListAsync();
+        }
     }
 }

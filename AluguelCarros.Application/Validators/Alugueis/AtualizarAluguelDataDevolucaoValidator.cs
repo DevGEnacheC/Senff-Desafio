@@ -12,9 +12,7 @@ namespace AluguelCarros.Application.Validators.Alugueis
 
             RuleFor(x => x.DataDevolucao)
                 .Cascade(CascadeMode.Continue)
-                .NotEmpty().WithMessage("A data de devolução é obrigatória.")
-                .GreaterThanOrEqualTo(DateTime.Today)
-                    .WithMessage("A data de devolução não pode ser anterior a hoje.");
+                .NotEmpty().WithMessage("A data de devolução é obrigatória.");
         }
     }
 }

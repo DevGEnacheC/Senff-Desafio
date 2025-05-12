@@ -22,7 +22,7 @@ namespace AluguelCarros.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Aluguel", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Aluguel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,12 +43,6 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("TaxaAtraso")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorAluguel")
-                        .HasColumnType("numeric");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CarroId");
@@ -58,7 +52,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Alugueis");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Carro", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Carro", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,6 +60,10 @@ namespace AluguelCarros.Infrastructure.Migrations
 
                     b.Property<int>("Ano")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("Disponivel")
                         .HasColumnType("boolean");
@@ -82,6 +80,9 @@ namespace AluguelCarros.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<double>("PrecoDiaria")
+                        .HasColumnType("double precision");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Placa")
@@ -90,7 +91,7 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Carros");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Cliente", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,15 +113,15 @@ namespace AluguelCarros.Infrastructure.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("AluguelCarros.Infrastructure.Entities.Aluguel", b =>
+            modelBuilder.Entity("AluguelCarros.Domain.Entities.Aluguel", b =>
                 {
-                    b.HasOne("AluguelCarros.Infrastructure.Entities.Carro", null)
+                    b.HasOne("AluguelCarros.Domain.Entities.Carro", null)
                         .WithMany()
                         .HasForeignKey("CarroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AluguelCarros.Infrastructure.Entities.Cliente", null)
+                    b.HasOne("AluguelCarros.Domain.Entities.Cliente", null)
                         .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)

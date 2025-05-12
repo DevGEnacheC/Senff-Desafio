@@ -1,4 +1,4 @@
-﻿using AluguelCarros.Infrastructure.Data.Repositories;
+﻿
 using AluguelCarros.Domain.Entities;
 using MediatR;
 using AluguelCarros.Domain.Repositories;

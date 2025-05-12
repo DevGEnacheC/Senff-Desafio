@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AluguelCarros.Application.Queries.Alugueis.Queries;
 using FluentValidation;
 
 namespace AluguelCarros.Application.Validators.Alugueis
 {
-    public class ListarAlugueisQueryValidator : AbstractValidator<ListarAlugueisQueryValidator>
+    public class ListarAlugueisQueryValidator : AbstractValidator<ListarAlugueisQuery>
     {
         public ListarAlugueisQueryValidator()
         {

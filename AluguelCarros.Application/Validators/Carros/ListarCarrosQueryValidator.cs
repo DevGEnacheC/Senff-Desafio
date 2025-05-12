@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AluguelCarros.Application.Queries.Carros.Queries;
+﻿using AluguelCarros.Application.Queries.Carros.Queries;
 using FluentValidation;
 
 namespace AluguelCarros.Application.Validators.Carros
