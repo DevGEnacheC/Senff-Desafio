@@ -92,6 +92,10 @@ dotnet restore
 Crie as tabelas no PostgreSQL:
 
 ```bash
+dotnet ef migrations add InitialCreate --project AluguelCarros.Infrastructure --startup-project AluguelCarros.API
+```
+
+```bash
 dotnet ef database update --project AluguelCarros.Infrastructure --startup-project AluguelCarros.API
 ```
 

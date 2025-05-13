@@ -10,5 +10,6 @@ namespace AluguelCarros.Domain.Repositories
         Task UpdateAsync(Cliente cliente);
         Task DeleteAsync(Cliente cliente, CancellationToken cancellationToken);
         Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken);
+        Task<bool> ExistsByCNHAsync(string cnh, CancellationToken cancellationToken);
     }
 }

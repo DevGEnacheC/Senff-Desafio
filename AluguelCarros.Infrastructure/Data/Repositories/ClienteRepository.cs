@@ -33,18 +33,20 @@ namespace AluguelCarros.Infrastructure.Data.Repositories
             _context.Clientes.Update(cliente);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken)
-        {
-            return await _context.Clientes.AnyAsync(c => c.CPF == cpf, cancellationToken);
-        }
-
         public async Task DeleteAsync(Cliente cliente, CancellationToken cancellationToken)
         {
             _context.Clientes.Remove(cliente);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task<bool> ExistsByCPFAsync(string cpf, CancellationToken cancellationToken)
+        {
+            return await _context.Clientes.AnyAsync(c => c.CPF == cpf, cancellationToken);
+        }
 
+        public async Task<bool> ExistsByCNHAsync(string cnh, CancellationToken cancellationToken)
+        {
+            return await _context.Clientes.AnyAsync(c => c.CNH == cnh, cancellationToken);
+        }
     }
 }

@@ -17,6 +17,11 @@ namespace AluguelCarros.Application.Validators.Clientes
         /// </summary>
         const int lengthCPF= 11;
 
+        /// <summary>
+        ///  Máximo de 11 caracteres para um CNH no padrão do Brasil.
+        /// </summary>
+        const int lengthCNH = 11;
+
         public CriarClienteCommandValidator()
         {
 
@@ -27,10 +32,17 @@ namespace AluguelCarros.Application.Validators.Clientes
 
             RuleFor(x => x.CPF)
                 .Cascade(CascadeMode.Stop)
-                .NotEmpty().WithMessage("O cpf é obrigatório.")
+                .NotEmpty().WithMessage("O CPF é obrigatório.")
                 .Length(lengthCPF)
                     .WithMessage(string.Format("O CPF deve conter {0} caracteres."
                     , lengthCPF));
+
+            RuleFor(x => x.CNH)
+                .Cascade(CascadeMode.Stop)
+                .NotEmpty().WithMessage("O CNH é obrigatório.")
+                .Length(lengthCNH)
+                    .WithMessage(string.Format("O CNH deve conter {0} caracteres."
+                    , lengthCNH));
         }
     }
 }

@@ -27,6 +27,9 @@ namespace AluguelCarros.Infrastructure.Data
             modelBuilder.Entity<Cliente>()
                 .HasIndex(c => c.CPF)
                 .IsUnique();
+            modelBuilder.Entity<Cliente>()
+                .HasIndex(c => c.CNH)
+                .IsUnique();
 
             modelBuilder.Entity<Aluguel>().HasKey(a => a.Id);
 

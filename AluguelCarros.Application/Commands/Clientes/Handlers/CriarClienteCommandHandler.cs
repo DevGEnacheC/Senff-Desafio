@@ -29,11 +29,19 @@ namespace AluguelCarros.Application.Commands.Clientes.Handlers
                 ]);
             }
 
-            var cliente = new Cliente(request.Nome, request.CPF);
+            if (await _repository.ExistsByCNHAsync(request.CNH, cancellationToken))
+            {
+                throw new FluentValidationException(
+                [
+                    new FluentValidation.Results.ValidationFailure("CNH", "O CNH já está em uso.")
+                ]);
+            }
+
+            var cliente = new Cliente(request.Nome, request.CPF, request.CNH);
 
             await _repository.AddAsync(cliente);
 
-            var evento = new ClienteCriadoEvent(cliente.Id, cliente.Nome, cliente.CPF);
+            var evento = new ClienteCriadoEvent(cliente.Id, cliente.Nome, cliente.CPF, cliente.CNH);
             await _mediator.Publish(evento, cancellationToken);
 
             return cliente.Id;

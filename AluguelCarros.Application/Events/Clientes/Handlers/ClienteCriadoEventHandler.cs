@@ -15,8 +15,8 @@ namespace AluguelCarros.Application.Events.Clientes.Handlers
 
         public Task Handle(ClienteCriadoEvent notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Cliente criado: ID={Id}, Nome={Nome}, CPF={CPF}"
-               ,notification.Id, notification.Nome, notification.CPF);
+            _logger.LogInformation("Cliente criado: ID={Id}, Nome={Nome}, CPF={CPF}, CNH={CNH}"
+               ,notification.Id, notification.Nome, notification.CPF, notification.CNH);
             return Task.CompletedTask;
         }
     }
